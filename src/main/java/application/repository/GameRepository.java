@@ -1,7 +1,8 @@
 package application.repository;
 
-import application.model.Game;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import application.model.Game;
 
 public interface GameRepository extends JpaRepository<Game, Long> {
 }

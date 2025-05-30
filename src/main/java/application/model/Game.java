@@ -1,7 +1,6 @@
 package application.model;
 
 import jakarta.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Game {
@@ -10,41 +9,32 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
+    private String name;
 
-    @ManyToMany
-    @JoinTable(
-        name = "game_genre",
-        joinColumns = @JoinColumn(name = "game_id"),
-        inverseJoinColumns = @JoinColumn(name = "genre_id")
-    )
-    private Set<Genre> genres;
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
 
-    @ManyToMany
-    @JoinTable(
-        name = "game_platform",
-        joinColumns = @JoinColumn(name = "game_id"),
-        inverseJoinColumns = @JoinColumn(name = "platform_id")
-    )
-    private Set<Platform> platforms;
+    @ManyToOne
+    @JoinColumn(name = "platform_id")
+    private Platform platform;
 
     @Enumerated(EnumType.STRING)
     private GameMode mode;
 
-    // Getters e setters
+    // Getters e Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public Set<Genre> getGenres() { return genres; }
-    public void setGenres(Set<Genre> genres) { this.genres = genres; }
+    public Genre getGenre() { return genre; }
+    public void setGenre(Genre genre) { this.genre = genre; }
 
-    public Set<Platform> getPlatforms() { return platforms; }
-    public void setPlatforms(Set<Platform> platforms) { this.platforms = platforms; }
+    public Platform getPlatform() { return platform; }
+    public void setPlatform(Platform platform) { this.platform = platform; }
 
     public GameMode getMode() { return mode; }
     public void setMode(GameMode mode) { this.mode = mode; }
 }
-
